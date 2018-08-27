@@ -10,7 +10,6 @@ const User = require("./models/User");
 const routes = require("./routes/index");
 
 require("./handlers/passport");
-require("dotenv").config({ path: "variables.env" });
 
 const app = express();
 const router = express.Router();
@@ -25,17 +24,19 @@ app.use(cookieParser());
 //   res.json({ message: "Hello, World!" });
 // });
 
-mongoose.connect(process.env.DATABASE);
-mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
-mongoose.connection.on("error", err => {
-  console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
-});
-mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
+// console.log(process.env.DATABASE);
+// mongoose.connect(process.env.DATABASE);
+// mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
+// mongoose.connection.on("error", err => {
+//   console.error(`🙅 🚫 🙅 🚫 🙅 🚫 🙅 🚫 → ${err.message}`);
+// });
+// mongoose.Promise = global.Promise; // Tell Mongoose to use ES6 promises
 
-require("./models/User");
 app.use("/api", routes);
 
-app.set("port", process.env.PORT || 7777);
-const server = app.listen(app.get("port"), () => {
-  console.log(`Express running → PORT ${server.address().port}`);
-});
+// app.set("port", process.env.PORT || 7777);
+// const server = app.listen(app.get("port"), () => {
+//   console.log(`Express running → PORT ${server.address().port}`);
+// });
+
+module.exports = app;
